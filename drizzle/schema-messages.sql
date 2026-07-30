@@ -1,0 +1,18 @@
+-- 留言表
+CREATE TABLE IF NOT EXISTS messages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  characterId VARCHAR(50) NOT NULL,
+  playerName VARCHAR(255),
+  message TEXT NOT NULL,
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_characterId (characterId),
+  INDEX idx_createdAt (createdAt)
+);
+
+-- 留言統計表（用於快速查詢各角色被選中次數）
+CREATE TABLE IF NOT EXISTS message_stats (
+  characterId VARCHAR(50) PRIMARY KEY,
+  messageCount INT DEFAULT 0,
+  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
